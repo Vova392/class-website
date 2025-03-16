@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наш Клас</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #f6d365, #fda085);
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            text-align: left;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            background: #d81b60;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .menu-item {
+            background: #fff176;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .menu-item:hover {
+            background: #ffeb3b;
+            transform: scale(1.05);
+        }
+        .submenu, .content {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .submenu div, .content {
+            background: #ffcc80;
+            padding: 12px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .submenu div:hover {
+            background: #ffa726;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>НАШ КЛАС (головна сторінка)</h1>
+        <div class="menu">
+            <div class="menu-item" data-toggle="about">Про нас</div>
+            <div class="menu-item" data-toggle="education">Навчання</div>
+            <div class="menu-item" data-toggle="leisure">Відпочинок</div>
+        </div>
+        
+        <div id="about" class="submenu">
+            <div data-content="history">Історія класу</div>
+            <div data-content="gallery">Фотогалерея</div>
+        </div>
+        
+        <div id="education" class="submenu">
+            <div data-content="subjects">Предмети</div>
+            <div data-content="materials">Навчальні матеріали</div>
+            <div data-content="schedule">Розклад уроків</div>
+        </div>
+        
+        <div id="leisure" class="submenu">
+            <div data-content="poetry">Поетична творчість</div>
+            <div data-content="holidays">Наші свята</div>
+            <div data-content="trips">Походи та екскурсії</div>
+            <div data-content="sports">Спортивні досягнення</div>
+        </div>
+        
+        <!-- Блоки для отображения контента -->
+        <div id="history" class="content">
+            <p>Наш клас заснований у 2015 році. За цей час ми стали дружною командою, брали участь у багатьох заходах та досягли значних успіхів.</p>
+        </div>
+        <div id="gallery" class="content">
+            <p>Фотогалерея з кращих моментів нашого класу:</p>
+            <img src="https://via.placeholder.com/150" alt="Фото 1">
+            <img src="https://via.placeholder.com/150" alt="Фото 2">
+            <img src="https://via.placeholder.com/150" alt="Фото 3">
+        </div>
+        <div id="subjects" class="content">
+            <p>Основні предмети, які ми вивчаємо: математика, українська мова, історія, природничі науки.</p>
+        </div>
+        <div id="materials" class="content">
+            <p>Навчальні матеріали доступні в електронному журналі.</p>
+        </div>
+        <div id="schedule" class="content">
+            <p>Розклад занять оновлюється щотижня.</p>
+        </div>
+        <div id="poetry" class="content">
+            <p>Наш клас пише чудові вірші та бере участь у літературних конкурсах.</p>
+        </div>
+        <div id="holidays" class="content">
+            <p>Ми святкуємо разом і проводимо яскраві заходи.</p>
+        </div>
+        <div id="trips" class="content">
+            <p>Щороку ми здійснюємо цікаві поїздки та екскурсії.</p>
+        </div>
+        <div id="sports" class="content">
+            <p>Наш клас бере активну участь у спортивних змаганнях.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".menu-item").forEach(item => {
+                item.addEventListener("click", function () {
+                    let target = document.getElementById(this.getAttribute("data-toggle"));
+                    if (target) {
+                        target.style.display = target.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+            });
+
+            document.querySelectorAll(".submenu div").forEach(item => {
+                item.addEventListener("click", function () {
+                    document.querySelectorAll(".content").forEach(el => el.style.display = "none");
+                    let target = document.getElementById(this.getAttribute("data-content"));
+                    if (target) {
+                        target.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
